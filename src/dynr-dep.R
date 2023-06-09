@@ -1,13 +1,11 @@
 root <- rprojroot::is_rstudio_project
-dep <- as.vector(
-  read.csv(
-    root$find_file(
-      "src",
-      "dynr-dep.csv"
-    ),
-    head = FALSE
-  )
-)
+dep <- read.csv(
+  root$find_file(
+    "src",
+    "dynr-dep.csv"
+  ),
+  head = FALSE
+)$V1
 for (i in seq_along(dep)) {
   install.packages(
     dep[i],
