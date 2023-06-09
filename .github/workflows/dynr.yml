@@ -18,5 +18,8 @@ jobs:
       - name: R install
         run: sudo bash ${PWD}/src/r-install.sh
             
-      - name: R install
+      - name: remotes and rprojroot
         run: sudo Rscript ${PWD}/src/000.R
+                
+      - name: dynr dependencies
+        run: sudo Rscript ${PWD}/src/dynr-dep.R
