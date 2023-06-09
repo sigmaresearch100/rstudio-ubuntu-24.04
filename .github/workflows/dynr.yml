@@ -15,9 +15,6 @@ jobs:
       - name: Setup R
         run: sudo bash ${PWD}/src/setup-r.sh
         
-      - name: Setup R
-        run: sudo bash ${PWD}/src/setup-r.sh
-        
       - name: remotes and rprojroot
         run: sudo Rscript ${PWD}/src/000.R
         
