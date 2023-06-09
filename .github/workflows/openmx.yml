@@ -1,0 +1,22 @@
+on:
+  push:
+    branches: main
+
+name: Build OpenMx with NPSOL in ubuntu-22.04
+
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+      
+      - name: R ppa
+        run: sudo bash ${PWD}/src/r-ppa.sh
+        
+      - name: R install
+        run: sudo bash ${PWD}/src/r-install.sh
+                        
+      - name: OpenMx build
+        run: sudo Rscript ${PWD}/src/openmx-npsol.R
