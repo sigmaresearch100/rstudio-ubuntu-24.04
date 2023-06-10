@@ -1,4 +1,4 @@
-name: Build R for ubuntu-22.04
+name: Build R for Ubuntu-22.04
 
 on:
   schedule:
