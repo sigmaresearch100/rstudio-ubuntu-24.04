@@ -19,8 +19,11 @@ jobs:
         name: Check out repository
         uses: actions/checkout@v3
       -
-        name: R ppa
+        name: ppa
         run: wget https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scripts/install_R_ppa.sh | sudo bash
       -
-        name: R install
+        name: install
         run: wget https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scripts/install_R_source.sh | sudo bash
+      -
+        name: test
+        run: Rscript -e "stats::rnorm(5)"
