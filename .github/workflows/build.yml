@@ -27,9 +27,6 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y wget
       -
-        name: ppa
-        run: wget https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scripts/install_R_ppa.sh && sudo bash install_R_ppa.sh
-      -
         name: install
         run: wget https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scripts/install_R_source.sh && sudo bash install_R_source.sh
       -
