@@ -15,8 +15,6 @@ jobs:
     runs-on: ubuntu-latest
     env:
       UBUNTU_VERSION: jammy
-      UBUNTU_CODENAME: jammy
-      R_HOME: /usr/local/lib/R
 
     steps:
       -
@@ -24,16 +22,18 @@ jobs:
         uses: actions/checkout@v3
       -
         name: apt
-        run: sudo apt-get update && sudo apt-get install -y wget
+        run: |
+          which R
+          sudo apt-get remove r-base-core 
+          sudo apt-get update
+          sudo apt-get install -y wget
+          which R
       -
         name: ppa
         run: wget https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scripts/install_R_ppa.sh && sudo bash install_R_ppa.sh
       -
         name: install
         run: wget https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scripts/install_R_source.sh && sudo bash install_R_source.sh
-      -
-        name: setup
-        run: wget https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scripts/setup_R.sh && sudo bash setup_R.sh
       -
         name: test
         run: which R
