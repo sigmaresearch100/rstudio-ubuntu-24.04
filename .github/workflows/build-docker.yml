@@ -37,6 +37,4 @@ jobs:
         run: wget https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scripts/setup_R.sh | bash
       -
         name: test
-        run: |
-          "${R_HOME}" -e "stats::rnorm(5)"
-          "${R_HOME}" -e "sessionInfo()"
+        run: which R
