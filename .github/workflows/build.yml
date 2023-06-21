@@ -23,11 +23,9 @@ jobs:
       -
         name: apt
         run: |
-          which R
           sudo apt-get remove r-base-core 
           sudo apt-get update
           sudo apt-get install -y wget
-          which R
       -
         name: ppa
         run: wget https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scripts/install_R_ppa.sh && sudo bash install_R_ppa.sh
