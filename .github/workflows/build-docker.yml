@@ -22,5 +22,5 @@ jobs:
         name: Check out repository
         uses: actions/checkout@v3
       -
-        name: run
+        name: Build
         run: bash tools/build.sh
