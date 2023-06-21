@@ -2,6 +2,8 @@
 
 set - e
 
+LANG=en_US.UTF-8
+
 # remove R
 apt-get remove r-base-core
 
