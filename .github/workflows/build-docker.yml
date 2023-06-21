@@ -17,6 +17,7 @@ jobs:
       env:
         UBUNTU_VERSION: jammy
         UBUNTU_CODENAME: jammy
+        R_HOME: /usr/local/lib/R
 
     steps:
       -
