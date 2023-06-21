@@ -27,13 +27,13 @@ jobs:
         run: sudo apt-get update && sudo apt-get install -y wget
       -
         name: ppa
-        run: wget https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scripts/install_R_ppa.sh | sudo bash
+        run: wget https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scripts/install_R_ppa.sh && sudo bash install_R_ppa.sh
       -
         name: install
-        run: wget https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scripts/install_R_source.sh | sudo bash
+        run: wget https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scripts/install_R_source.sh && sudo bash install_R_source.sh
       -
         name: setup
-        run: wget https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scripts/setup_R.sh | sudo bash
+        run: wget https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scripts/setup_R.sh && sudo bash setup_R.sh
       -
         name: test
         run: which R
