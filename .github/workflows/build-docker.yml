@@ -16,6 +16,7 @@ jobs:
       image: ubuntu:22.04
       env:
         UBUNTU_VERSION: jammy
+        UBUNTU_CODENAME: jammy
 
     steps:
       -
@@ -30,6 +31,9 @@ jobs:
       -
         name: install
         run: wget https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scripts/install_R_source.sh | bash
+      -
+        name: setup
+        run: wget https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scripts/setup_R.sh | bash
       -
         name: test
         run: Rscript -e "stats::rnorm(5)"
