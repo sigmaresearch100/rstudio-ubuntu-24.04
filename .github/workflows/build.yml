@@ -1,4 +1,4 @@
-name: Build R for Ubuntu-22.04
+name: Build R for Ubuntu-22.04 (Runner)
 
 on:
   schedule:
@@ -11,7 +11,7 @@ on:
 
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu:22.04
     env:
       UBUNTU_VERSION: jammy
 
