@@ -5,8 +5,7 @@ set -e
 export LANG=en_US.UTF-8
 
 # remove R if it exists
-dpkg --remove r-base-core
-dpkg --remove r-base
+dpkg --remove r-base-core r-base
 
 # install wget
 apt-get update
