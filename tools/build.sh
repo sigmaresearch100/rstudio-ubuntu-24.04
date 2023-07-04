@@ -17,3 +17,4 @@ bash install_R_source.sh
 
 # session
 R -e "sessionInfo()"
+which rspm
