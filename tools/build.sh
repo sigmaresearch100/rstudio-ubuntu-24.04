@@ -13,7 +13,7 @@ wget https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scrip
 bash install_R_source.sh
 
 # install Rstudio from source
-wget https://github.com/rocker-org/rocker-versioned2/blob/master/scripts/install_rstudio.sh
+wget https://raw.githubusercontent.com/rocker-org/rocker-versioned2/master/scripts/install_rstudio.sh
 bash install_rstudio.sh
 
 # session
