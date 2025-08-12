@@ -1,4 +1,4 @@
-name: Build R for Ubuntu-24.04 (Docker)
+name: Build RStudio for Ubuntu-24.04 (Docker)
 
 on:
   schedule:

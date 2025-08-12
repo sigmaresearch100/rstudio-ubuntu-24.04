@@ -1,4 +1,4 @@
-name: Build R for Ubuntu-22.04 (Runner)
+name: Build RStudio for Ubuntu-22.04 (Runner)
 
 on:
   schedule:
