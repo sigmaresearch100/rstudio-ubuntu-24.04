@@ -1,4 +1,4 @@
-name: Build R for Ubuntu-22.04 (Docker)
+name: Build R for Ubuntu-24.04 (Docker)
 
 on:
   schedule:
@@ -13,14 +13,12 @@ jobs:
   build:
     runs-on: ubuntu-latest
     container:
-      image: ubuntu:22.04
-      env:
-        UBUNTU_VERSION: jammy
+      image: ubuntu:24.04
 
     steps:
       -
         name: Check out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
       -
         name: Build
         run: bash tools/build.sh

@@ -12,8 +12,6 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      UBUNTU_VERSION: jammy
 
     steps:
       -
@@ -21,7 +19,7 @@ jobs:
         run: sudo apt-get remove -y r-base-core r-base
       -
         name: Check out repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v5
       -
         name: Build
         run: sudo bash tools/build.sh
