@@ -5,6 +5,14 @@
 set -Eeuo pipefail
 IFS=$'\n\t'
 
+# ---------- Root / tracing ----------
+# Self-elevate to root if needed (nice UX in CI and locally)
+if [[ ${EUID:-0} -ne 0 ]]; then
+  exec sudo -E bash "$0" "$@"
+fi
+# Pinpoint failing line if anything errors
+trap 'rc=$?; echo "FAILED at ${BASH_SOURCE[0]}:${LINENO} (rc=${rc})" >&2; exit "${rc}"' ERR
+
 # ---------- Config ----------
 # Usage: ./install-r-from-source.sh [latest|patched|devel|<version>]
 R_VERSION=${1:-${R_VERSION:-"latest"}}
@@ -31,10 +39,14 @@ source /etc/os-release
 apt-get update
 apt-get install -y --no-install-recommends locales tzdata
 
-# Locale (avoid interactive prompts)
+# Locale (avoid interactive prompts); make CI-safe if locale tools return non-zero
 LANG=${LANG:-"en_US.UTF-8"}
-/usr/sbin/locale-gen --lang "${LANG}"
-/usr/sbin/update-locale --reset LANG="${LANG}"
+/usr/sbin/locale-gen --lang "${LANG}" || {
+  echo "locale-gen returned non-zero; continuing (CI safe)" >&2
+}
+/usr/sbin/update-locale --reset LANG="${LANG}" || {
+  echo "update-locale returned non-zero; continuing (CI safe)" >&2
+}
 
 # --- Runtime libs R itself will dynamically use ---
 # Prefer OpenBLAS; keep LAPACK. Add XML and Pango/Cairo.
@@ -67,9 +79,7 @@ zlib1g
 wget
 libpangocairo-1.0-0
 PKGS
-# Turn the newline list into a bash array
 mapfile -t RUNTIME_PKGS < <(printf '%s\n' "${_RUNTIME_PKGS}")
-
 apt-get install -y --no-install-recommends "${RUNTIME_PKGS[@]}"
 
 # --- Build deps for configure/make (dev headers etc.) ---
@@ -109,7 +119,6 @@ xvfb
 zlib1g-dev
 PKGS
 mapfile -t BUILDDEPS < <(printf '%s\n' "${_BUILDDEPS}")
-
 apt-get install -y --no-install-recommends "${BUILDDEPS[@]}"
 
 # ---------- Fetch R source from CRAN (cloud mirror, fallback) ----------
@@ -180,7 +189,7 @@ if command -v checkbashisms >/dev/null 2>&1; then
   install -m 0755 "$(command -v checkbashisms)" /usr/local/bin/checkbashisms
 fi
 
-if [ "${PURGE_BUILDDEPS}" != "false" ]; then
+if [[ "${PURGE_BUILDDEPS}" != "false" ]]; then
   apt-get remove --purge -y "${BUILDDEPS[@]}"
 fi
 apt-get autoremove -y
