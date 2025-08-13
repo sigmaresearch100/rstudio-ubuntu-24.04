@@ -15,10 +15,3 @@ if [[ ! -x ${install_r} ]]; then
   chmod u+x "${install_r}"
 fi
 "${install_r}"
-
-# Run install-RStudio script
-install_rstudio="./install-rstudio-server.sh"
-if [[ ! -x ${install_rstudio} ]]; then
-  chmod u+x "${install_rstudio}"
-fi
-"${install_rstudio}"
