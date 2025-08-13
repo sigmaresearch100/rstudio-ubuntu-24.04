@@ -1,0 +1,21 @@
+name: Build RStudio Server for Ubuntu-24.04
+
+on:
+  schedule:
+    - cron:  '0 0 ? * SUN'
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+
+    steps:
+      -
+        name: Check out repository
+        uses: actions/checkout@v5
+      -
+        name: Run
+        run: chmod +x run.sh && ./run.sh
